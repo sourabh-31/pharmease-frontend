@@ -1,0 +1,15 @@
+.input {
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  border-radius: 0.325rem;
+  padding: 0.5rem 1rem;
+}
+
+.select {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1.5fr 1.5fr 1.2fr;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}

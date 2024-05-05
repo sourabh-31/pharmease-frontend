@@ -1,0 +1,19 @@
+.spinner {
+  position: absolute;
+  top: 40%;
+  left: calc(8rem + 50%);
+  width: 6.4rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: spin 1.5s infinite linear;
+  background: radial-gradient(farthest-side, #15803d 94%, #0000) top/10px 10px
+      no-repeat,
+    conic-gradient(#0000 30%, #15803d);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}

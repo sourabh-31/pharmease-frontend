@@ -1,0 +1,33 @@
+.formRow {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1.5fr 1.5fr 1.2fr;
+  gap: 2rem;
+  padding: 1.2rem 0;
+}
+
+.formRow:first-child {
+  padding-top: 0;
+}
+
+.formRow:last-child {
+  padding-bottom: 0;
+}
+
+.formRow:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.formRow:has(button) {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.error {
+  color: #b91c1c;
+}

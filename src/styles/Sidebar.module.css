@@ -1,0 +1,11 @@
+.sidebar {
+  grid-row: 1 / -1;
+  background-color: #283343;
+  overflow: auto;
+  min-height: 100%;
+  height: 100vh;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
