@@ -1,13 +1,13 @@
-import Signin from "../features/authentication/Signin";
+import Signup from "../features/authentication/Signup";
 import Navbar from "../features/landingPage/Navbar";
 
-function Login() {
+function Register() {
   return (
     <div className="mx-20 my-6">
       <Navbar />
-      <Signin />
+      <Signup />
     </div>
   );
 }
 
-export default Login;
+export default Register;

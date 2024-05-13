@@ -167,7 +167,7 @@ function InvoiceTable() {
 
           <Modal>
             <Modal.Open opens="add-group-invoice">
-              <Button bgColor="#01a768" type="button">
+              <Button bgColor="#009099" type="button">
                 Add New Group
               </Button>
             </Modal.Open>
@@ -179,7 +179,7 @@ function InvoiceTable() {
           {medicinesList.length !== 0 && (
             <Modal>
               <Modal.Open opens="add-discount">
-                <Button bgColor="#1d242e" type="button">
+                <Button bgColor="#e3ebf3" textColor="#000" type="button">
                   Add Discount
                 </Button>
               </Modal.Open>
@@ -192,7 +192,7 @@ function InvoiceTable() {
           {medicinesList.length !== 0 && (
             <Modal>
               <Modal.Open opens="add-gst">
-                <Button bgColor="#1d242e" type="button">
+                <Button bgColor="#e3ebf3" textColor="#000" type="button">
                   Add GST%
                 </Button>
               </Modal.Open>

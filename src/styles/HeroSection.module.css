@@ -1,0 +1,7 @@
+.heroSection {
+  background-image: url("/src/data/landing-assets/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 75vh;
+  margin-top: 3.5rem;
+}

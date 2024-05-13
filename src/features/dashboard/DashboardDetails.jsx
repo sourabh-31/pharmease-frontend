@@ -45,19 +45,6 @@ function DashboardDetails() {
         </DetailBox.Body>
       </DetailBox>
 
-      {/* My Pharmacy */}
-      <DetailBox>
-        <DetailBox.Header>
-          <DetailBox.Heading>My Pharmacy</DetailBox.Heading>
-          <DetailBox.Action>Go to Staff Management</DetailBox.Action>
-        </DetailBox.Header>
-
-        <DetailBox.DetailPart1 position="center">
-          <p className="xl:text-xl 2xl:text-2xl font-bold">05</p>
-          <p className="text-sm 2xl:text-base font-medium">Total no of Users</p>
-        </DetailBox.DetailPart1>
-      </DetailBox>
-
       {/* Customers  */}
       <DetailBox>
         <DetailBox.Header>

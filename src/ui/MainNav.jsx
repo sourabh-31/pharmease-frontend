@@ -84,12 +84,6 @@ function MainNav() {
         </li>
         <Border />
         <li>
-          <NavLink to="/manage-staff" className={styles.navLink}>
-            <img src={StaffIcon} alt="stffIcon" />
-            <span>Staff Management</span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/manage-customer" className={styles.navLink}>
             <img src={CustomerIcon} alt="stffIcon" />
             <span>Customer Management</span>

@@ -1,15 +1,15 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { MedicineProvider } from "./context/MedicineContext";
+import { InvoiceProvider } from "./context/InvoiceContext";
 
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
 import Reports from "./pages/Reports";
 import Invoice from "./pages/Invoice";
-import StaffAccounts from "./pages/StaffAccounts";
 import Customers from "./pages/Customers";
 import Notifications from "./pages/Notifications";
 import Help from "./pages/Help";
@@ -20,7 +20,9 @@ import MedicineTable from "./pages/MedicineTable";
 import GroupsTable from "./pages/GroupsTable";
 import ExpiredTable from "./pages/ExpiredTable";
 import GroupDetail from "./pages/GroupDetail";
-import { InvoiceProvider } from "./context/InvoiceContext";
+import LandingPage from "./pages/LandingPage";
+import Register from "./pages/Register";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,8 +40,16 @@ function App() {
         <InvoiceProvider>
           <BrowserRouter>
             <Routes>
-              <Route element={<AppLayout />}>
-                <Route index element={<Navigate replace to="/dashboard" />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="inventory" element={<Inventory />}>
                   <Route path="medicines" element={<MedicineTable />} />
@@ -50,7 +60,6 @@ function App() {
 
                 <Route path="reports" element={<Reports />} />
                 <Route path="invoice" element={<Invoice />} />
-                <Route path="manage-staff" element={<StaffAccounts />} />
                 <Route path="manage-customer" element={<Customers />} />
                 <Route path="notifications" element={<Notifications />} />
                 <Route path="help" element={<Help />} />

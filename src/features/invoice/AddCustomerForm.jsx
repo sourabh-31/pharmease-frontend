@@ -337,13 +337,28 @@ function AddCustomerForm() {
           </div>
 
           <div className="flex gap-6 items-center justify-end mr-10 mt-12 mb-10">
-            <Button bgColor="#03a9f5" disabled={isCreating} type="submit">
+            <Button
+              bgColor="#e5f2ef"
+              textColor="#000"
+              disabled={isCreating}
+              type="submit"
+            >
               Save
             </Button>
-            <Button bgColor="#03a9f5" disabled={isCreating} type="button">
+            <Button
+              bgColor="#e5f2ef"
+              textColor="#000"
+              disabled={isCreating}
+              type="button"
+            >
               Save & Print
             </Button>
-            <Button bgColor="#03a9f5" disabled={isCreating} type="button">
+            <Button
+              bgColor="#e5f2ef"
+              textColor="#000"
+              disabled={isCreating}
+              type="button"
+            >
               Print
             </Button>
           </div>
