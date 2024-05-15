@@ -15,7 +15,7 @@ function Features() {
       </div>
 
       <div className="grid grid-cols-4 mt-16 gap-[3.5vw]">
-        <div className="bg-[#f1f1f1] w-[20vw] px-6 pt-10 pb-16">
+        <div className="bg-[#f1f1f1] w-[20vw] px-8 pt-10 pb-16">
           <img src={Tablet} alt="icon" className="w-10" />
           <p className="text-xl font-semibold mt-4">Inventory Management</p>
           <ul className="list-disc ml-5 mt-2">
@@ -26,7 +26,7 @@ function Features() {
           </ul>
         </div>
 
-        <div className="bg-[#f1f1f1] w-[20vw] px-6 pt-10 pb-16">
+        <div className="bg-[#f1f1f1] w-[20vw] px-8 pt-10 pb-16">
           <img src={Heart} alt="icon" className="w-10" />
           <p className="text-xl font-semibold mt-5">Analytics Dashboard</p>
           <ul className="list-disc ml-5 mt-2">
@@ -37,7 +37,7 @@ function Features() {
           </ul>
         </div>
 
-        <div className="bg-[#f1f1f1] w-[20vw] px-6 pt-10 pb-16">
+        <div className="bg-[#f1f1f1] w-[20vw] px-8 pt-10 pb-16">
           <img src={Eye} alt="icon" className="w-10" />
           <p className="text-xl font-semibold mt-6">Pharmacy Billing</p>
           <ul className="list-disc ml-5 mt-2">
@@ -48,7 +48,7 @@ function Features() {
           </ul>
         </div>
 
-        <div className="bg-[#f1f1f1] w-[20vw] px-6 pt-10 pb-16">
+        <div className="bg-[#f1f1f1] w-[20vw] px-8 pt-10 pb-16">
           <img src={Brain} alt="icon" className="w-10" />
           <p className="text-xl font-semibold mt-4">Pharmacy CRM</p>
           <ul className="list-disc ml-5 mt-2">

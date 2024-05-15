@@ -16,9 +16,16 @@ function Navbar() {
     navigate("/");
   }
 
+  function handleLogoClicked() {
+    navigate("/");
+  }
+
   return (
     <header className="flex items-center justify-between">
-      <img src={Logo} alt="logo" className="w-[10rem]" />
+      <button onClick={handleLogoClicked}>
+        <img src={Logo} alt="logo" className="w-[10rem]" />
+      </button>
+
       {location.pathname === "/" ? (
         <>
           <nav>
@@ -28,9 +35,6 @@ function Navbar() {
               </li>
               <li>
                 <button>Features</button>
-              </li>
-              <li>
-                <button>Pricing</button>
               </li>
               <li>
                 <button>Contact Us</button>

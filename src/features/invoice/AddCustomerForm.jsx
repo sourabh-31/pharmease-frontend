@@ -22,6 +22,7 @@ function AddCustomerForm() {
     setMedId,
     selectedMedicines,
     medicinesList,
+    gst,
   } = useInvoiceContext();
 
   const grossAmt = grossTotal.reduce(
@@ -112,6 +113,7 @@ function AddCustomerForm() {
         billNo,
         ...data,
         discount,
+        gst,
         totalBill: netAmt,
         medicineInfo: grossTotal,
       };
@@ -317,19 +319,19 @@ function AddCustomerForm() {
             <div className="flex items-center gap-6">
               <p className="flex items-center gap-2">
                 <span>Gross Amt:</span>
-                <span className="bg-[#01a768] text-white py-1 px-3 rounded-md">
+                <span className="bg-[#01a768] text-white py-1 px-3">
                   Rs. {grossAmt.toFixed(2)}
                 </span>
               </p>
               <p className="flex items-center gap-2">
                 <span>Discount:</span>
-                <span className="bg-[#f0483e] text-white py-1 px-3 rounded-md">
+                <span className="bg-[#f0483e] text-white py-1 px-3">
                   Rs. {discount}
                 </span>
               </p>
               <p className="flex items-center gap-2">
                 <span>Net Amt:</span>
-                <span className="bg-[#01a768] text-white py-1 px-3 rounded-md">
+                <span className="bg-[#01a768] text-white py-1 px-3">
                   Rs. {(grossAmt - discount).toFixed(2)}
                 </span>
               </p>
@@ -343,7 +345,7 @@ function AddCustomerForm() {
               disabled={isCreating}
               type="submit"
             >
-              Save
+              <p className="font-medium">Save</p>
             </Button>
             <Button
               bgColor="#e5f2ef"
@@ -351,7 +353,7 @@ function AddCustomerForm() {
               disabled={isCreating}
               type="button"
             >
-              Save & Print
+              <p className="font-medium">Save & Print</p>
             </Button>
             <Button
               bgColor="#e5f2ef"
@@ -359,7 +361,7 @@ function AddCustomerForm() {
               disabled={isCreating}
               type="button"
             >
-              Print
+              <p className="font-medium">Print</p>
             </Button>
           </div>
         </section>

@@ -7,6 +7,7 @@ export async function createInvoice(invoice) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(invoice),
     });
 
@@ -23,8 +24,28 @@ export async function createInvoice(invoice) {
 
 export async function getAllInvoices() {
   try {
-    const res = await fetch(`${API}/invoice/all`);
+    const res = await fetch(`${API}/invoice/all`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching invoices");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteInvoice(id) {
+  try {
+    const res = await fetch(`${API}/invoice/delete/${id}`, {
+      method: "Delete",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      throw new Error("Invoice could not be Deleted");
+    }
+
     const data = await res.json();
     return data;
   } catch (error) {

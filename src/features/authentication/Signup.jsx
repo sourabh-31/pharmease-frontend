@@ -1,15 +1,23 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useCreateUser } from "./useAuth";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { useAuthContext } from "../../context/AuthContext";
+import EyeLogo from "../../data/siginin-assets/eye.svg";
+import EyeSlash from "../../data/siginin-assets/eyeSlash.svg";
 
 function Signup() {
-  const { register, handleSubmit, reset, formState, setValue } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
+
+  const { login } = useAuthContext();
 
   const { isCreating, createUser } = useCreateUser();
 
   const navigate = useNavigate();
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   function handleSignInClicked() {
     navigate("/login");
@@ -18,12 +26,18 @@ function Signup() {
   function onSubmit(data) {
     createUser(data, {
       onSuccess: () => {
+        login();
         navigate("/dashboard", { replace: true });
+        reset();
       },
     });
   }
 
   function onError(errors) {}
+
+  function handlePasswordVisible() {
+    setPasswordVisible((visible) => !visible);
+  }
 
   return (
     <section className="mt-8">
@@ -126,19 +140,32 @@ function Signup() {
         </div>
 
         <div className="w-full">
-          <input
-            type="text"
-            placeholder="Enter your password"
-            id="password"
-            className="bg-[#efefef] py-5 px-8 rounded-full placeholder:text-[#827a7a] placeholder:text-base text-lg font-medium w-full"
-            {...register("password", {
-              required: "This Field is required",
-              minLength: {
-                value: 8,
-                message: "Password should atleast 8 characters",
-              },
-            })}
-          />
+          <div className="relative">
+            <input
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Enter your password"
+              id="password"
+              className="bg-[#efefef] py-5 px-8 rounded-full placeholder:text-[#827a7a] placeholder:text-base text-lg font-medium w-full"
+              {...register("password", {
+                required: "This Field is required",
+                minLength: {
+                  value: 8,
+                  message: "Password should atleast 8 characters",
+                },
+              })}
+            />
+            <button
+              className="absolute top-[35%] right-8"
+              onClick={handlePasswordVisible}
+              type="button"
+            >
+              {passwordVisible ? (
+                <img src={EyeLogo} alt="eye" />
+              ) : (
+                <img src={EyeSlash} alt="eyeSlash" />
+              )}
+            </button>
+          </div>
           {errors?.password?.message && (
             <div className="text-[#b91c1c] ml-4 mt-2">
               {errors?.password?.message}

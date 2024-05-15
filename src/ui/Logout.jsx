@@ -17,6 +17,7 @@ function Logout() {
         textColor="#000"
         border={true}
         onClick={handleLogoutClicked}
+        disabled={isLoading}
       >
         Logout
       </Button>

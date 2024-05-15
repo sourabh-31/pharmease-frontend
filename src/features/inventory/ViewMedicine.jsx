@@ -104,7 +104,7 @@ function ViewMedicine({ onCloseModal, medicine }) {
         />
       </FormRow>
 
-      <FormRow label="Price" error={errors?.price?.message}>
+      <FormRow label="Price (₹)" error={errors?.price?.message}>
         <input
           className={styles.input}
           type="text"
@@ -195,7 +195,7 @@ function ViewMedicine({ onCloseModal, medicine }) {
             onClick={() => setToggleField(false)}
             type="button"
           >
-            Edit
+            Update
           </Button>
         )}
 

@@ -92,7 +92,7 @@ function CreateMedicineForm({ onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label="Price" error={errors?.price?.message}>
+      <FormRow label="Price (₹)" error={errors?.price?.message}>
         <input
           className={styles.input}
           type="text"

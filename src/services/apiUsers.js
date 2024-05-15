@@ -73,3 +73,65 @@ export async function logoutUser() {
     throw new Error(error.message);
   }
 }
+
+export async function updateUser(newUserData) {
+  try {
+    const res = await fetch(`${API}/users/me/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(newUserData),
+    });
+
+    if (!res.ok) {
+      throw new Error("User could not be updated");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function forgotPassword(email) {
+  try {
+    const res = await fetch(`${API}/users/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    });
+    if (!res.ok) {
+      const errorMessage = await res.json();
+      throw new Error(errorMessage?.message || "Failed to send reset link");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function resetPassword(token, password) {
+  try {
+    const res = await fetch(`${API}/users/resetPassword/${token}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: password }),
+    });
+    if (!res.ok) {
+      const errorMessage = await res.json();
+      throw new Error(errorMessage?.message || "Failed to reset password");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

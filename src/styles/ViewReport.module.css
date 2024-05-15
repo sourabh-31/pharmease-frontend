@@ -1,0 +1,10 @@
+.input {
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  border-radius: 0.325rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}

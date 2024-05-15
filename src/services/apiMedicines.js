@@ -2,7 +2,9 @@ import { API } from "../utils/constant";
 
 export async function getAllMedicine() {
   try {
-    const res = await fetch(`${API}/medicine/all`);
+    const res = await fetch(`${API}/medicine/all`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching medicines");
     const data = await res.json();
     return data;
@@ -13,7 +15,9 @@ export async function getAllMedicine() {
 
 export async function getExpiredMedicines() {
   try {
-    const res = await fetch(`${API}/medicine/all/expired`);
+    const res = await fetch(`${API}/medicine/all/expired`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching expired medicines");
     const data = await res.json();
     return data;
@@ -24,7 +28,9 @@ export async function getExpiredMedicines() {
 
 export async function getMedicine(id) {
   try {
-    const res = await fetch(`${API}/medicine/get/${id}`);
+    const res = await fetch(`${API}/medicine/get/${id}`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching medicine");
     const data = await res.json();
     return data;
@@ -35,7 +41,9 @@ export async function getMedicine(id) {
 
 export async function getMedicinesByGroup(id) {
   try {
-    const res = await fetch(`${API}/medicine/get/group/${id}`);
+    const res = await fetch(`${API}/medicine/get/group/${id}`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching medicine");
     const data = await res.json();
     return data;
@@ -51,6 +59,7 @@ export async function createMedicine(medicine) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(medicine),
     });
 
@@ -72,6 +81,7 @@ export async function updateMedicine(medicine, id) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(medicine),
     });
 
@@ -90,6 +100,7 @@ export async function deleteMedicine(id) {
   try {
     const res = await fetch(`${API}/medicine/delete/${id}`, {
       method: "Delete",
+      credentials: "include",
     });
 
     if (!res.ok) {
@@ -110,6 +121,7 @@ export async function addMedicinesToGroup(values) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(values),
     });
 
@@ -131,6 +143,7 @@ export async function subtractMedicineQuantity(queryValue) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(queryValue),
     });
 
@@ -138,6 +151,45 @@ export async function subtractMedicineQuantity(queryValue) {
       throw new Error("Medicine could not be updated");
     }
 
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getExpiringMedicines() {
+  try {
+    const res = await fetch(`${API}/medicine/expiring`, {
+      credentials: "include",
+    });
+    if (!res.ok) throw new Error("Error fetching expiring medicines");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getShortageMedicines() {
+  try {
+    const res = await fetch(`${API}/medicine/shortage`, {
+      credentials: "include",
+    });
+    if (!res.ok) throw new Error("Error fetching shortage medicines");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getEmptyMedicines() {
+  try {
+    const res = await fetch(`${API}/medicine/empty`, {
+      credentials: "include",
+    });
+    if (!res.ok) throw new Error("Error fetching Empty medicines");
     const data = await res.json();
     return data;
   } catch (error) {

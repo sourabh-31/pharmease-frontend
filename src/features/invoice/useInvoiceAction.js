@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createInvoice as createInvoiceApi,
+  deleteInvoice as deleteInvoiceApi,
   getAllInvoices,
 } from "../../services/apiInvoices";
 import toast from "react-hot-toast";
@@ -35,4 +36,22 @@ export function useInvoices() {
   });
 
   return { isLoading, invoices, error };
+}
+
+export function useDeleteInvoice() {
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate: deleteInvoice } = useMutation({
+    mutationFn: deleteInvoiceApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["invoices"],
+      });
+
+      toast.success("Invoice deleted successfully");
+    },
+    onError: (err) => toast.error(err.message),
+  });
+
+  return { isDeleting, deleteInvoice };
 }

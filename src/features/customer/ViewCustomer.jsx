@@ -117,7 +117,7 @@ function ViewCustomer({ onCloseModal, customer }) {
             onClick={() => setToggleField(false)}
             type="button"
           >
-            Edit
+            Update
           </Button>
         )}
 

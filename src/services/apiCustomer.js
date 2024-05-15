@@ -2,7 +2,9 @@ import { API } from "../utils/constant";
 
 export async function getAllCustomer() {
   try {
-    const res = await fetch(`${API}/customer/all`);
+    const res = await fetch(`${API}/customer/all`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching Customers");
     const data = await res.json();
     return data;
@@ -13,7 +15,9 @@ export async function getAllCustomer() {
 
 export async function getCustomer(id) {
   try {
-    const res = await fetch(`${API}/customer/get/${id}`);
+    const res = await fetch(`${API}/customer/get/${id}`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching customer");
     const data = await res.json();
     return data;
@@ -29,6 +33,7 @@ export async function createCustomer(customer) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(customer),
     });
 
@@ -50,6 +55,7 @@ export async function updateCustomer(customer, id) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(customer),
     });
 
@@ -68,6 +74,7 @@ export async function deleteCustomer(id) {
   try {
     const res = await fetch(`${API}/customer/delete/${id}`, {
       method: "Delete",
+      credentials: "include",
     });
 
     if (!res.ok) {

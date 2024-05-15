@@ -26,7 +26,7 @@ function CustomerRow({ customer }) {
         {isCustomerDeleteClicked ? (
           <Modal.Open opens="deleteCustomer">
             <button className="flex items-center gap-3">
-              <img src={TrashIcon} alt="doubleArrow" className="w-4" />
+              <img src={TrashIcon} alt="trashIcon" className="w-4" />
               <p className="text-sm font-semibold">Delete</p>
             </button>
           </Modal.Open>

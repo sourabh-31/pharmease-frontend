@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
@@ -23,6 +23,12 @@ import GroupDetail from "./pages/GroupDetail";
 import LandingPage from "./pages/LandingPage";
 import Register from "./pages/Register";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import { useAuthContext } from "./context/AuthContext";
+import { useReportContext } from "./context/ReportContext";
+import LiveStat from "./features/live-stat/LiveStat";
+import Notification from "./features/notifications/Notification";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +39,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const { isAuthenticated } = useAuthContext();
+
+  const { isStatVisible, isNotificationVisible } = useReportContext();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -40,33 +50,79 @@ function App() {
         <InvoiceProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route
+                path="/"
                 element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
+                  isAuthenticated ? (
+                    <Navigate to="/dashboard" replace />
+                  ) : (
+                    <LandingPage />
+                  )
                 }
-              >
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="inventory" element={<Inventory />}>
-                  <Route path="medicines" element={<MedicineTable />} />
-                  <Route path="groups" element={<GroupsTable />} />
-                  <Route path="groups/:group" element={<GroupDetail />} />
-                  <Route path="expired" element={<ExpiredTable />} />
+              />
+              <Route
+                path="/login"
+                element={
+                  isAuthenticated ? (
+                    <Navigate to="/dashboard" replace />
+                  ) : (
+                    <Login />
+                  )
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  isAuthenticated ? (
+                    <Navigate to="/dashboard" replace />
+                  ) : (
+                    <Register />
+                  )
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={
+                  isAuthenticated ? (
+                    <Navigate to="/dashboard" replace />
+                  ) : (
+                    <ForgotPasswordPage />
+                  )
+                }
+              />
+              <Route
+                path="/reset-password/:resetId"
+                element={
+                  isAuthenticated ? (
+                    <Navigate to="/dashboard" replace />
+                  ) : (
+                    <ResetPasswordPage />
+                  )
+                }
+              />
+              {isAuthenticated && (
+                <Route
+                  element={
+                    <ProtectedRoute>
+                      <AppLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/inventory" element={<Inventory />}>
+                    <Route path="medicines" element={<MedicineTable />} />
+                    <Route path="groups" element={<GroupsTable />} />
+                    <Route path="groups/:group" element={<GroupDetail />} />
+                    <Route path="expired" element={<ExpiredTable />} />
+                  </Route>
+                  <Route path="/reports" element={<Reports />} />
+                  <Route path="/invoice" element={<Invoice />} />
+                  <Route path="/manage-customer" element={<Customers />} />
+                  <Route path="/notifications" element={<Notifications />} />
+                  <Route path="/help" element={<Help />} />
+                  <Route path="/profile" element={<Profile />} />
                 </Route>
-
-                <Route path="reports" element={<Reports />} />
-                <Route path="invoice" element={<Invoice />} />
-                <Route path="manage-customer" element={<Customers />} />
-                <Route path="notifications" element={<Notifications />} />
-                <Route path="help" element={<Help />} />
-                <Route path="profile" element={<Profile />} />
-              </Route>
-
-              <Route path="login" element={<Login />} />
+              )}
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
@@ -93,6 +149,17 @@ function App() {
           },
         }}
       />
+      {isStatVisible && (
+        <div className="fixed bottom-2 right-4">
+          <LiveStat />
+        </div>
+      )}
+
+      {isNotificationVisible && (
+        <div className="absolute top-20 left-[25rem]">
+          <Notification />
+        </div>
+      )}
     </QueryClientProvider>
   );
 }

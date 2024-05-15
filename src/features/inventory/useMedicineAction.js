@@ -4,9 +4,12 @@ import {
   createMedicine as createMedicineApi,
   deleteMedicine as deleteMedicineApi,
   getAllMedicine,
+  getEmptyMedicines,
   getExpiredMedicines,
+  getExpiringMedicines,
   getMedicine,
   getMedicinesByGroup,
+  getShortageMedicines,
   subtractMedicineQuantity,
   updateMedicine as updateMedicineApi,
 } from "../../services/apiMedicines";
@@ -183,4 +186,43 @@ export function useSubtractMedicine() {
   });
 
   return { isUpdating, subtractMedicine };
+}
+
+export function useExpiringMedicines() {
+  const {
+    isLoading,
+    data: expiring = [],
+    error,
+  } = useQuery({
+    queryKey: ["expiring"],
+    queryFn: getExpiringMedicines,
+  });
+
+  return { isLoading, expiring, error };
+}
+
+export function useShortageMedicines() {
+  const {
+    isLoading,
+    data: shortage = [],
+    error,
+  } = useQuery({
+    queryKey: ["shortage"],
+    queryFn: getShortageMedicines,
+  });
+
+  return { isLoading, shortage, error };
+}
+
+export function useEmptyMedicines() {
+  const {
+    isLoading,
+    data: empty = [],
+    error,
+  } = useQuery({
+    queryKey: ["empty"],
+    queryFn: getEmptyMedicines,
+  });
+
+  return { isLoading, empty, error };
 }

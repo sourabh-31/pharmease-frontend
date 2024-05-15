@@ -33,13 +33,14 @@ function Detail({ children }) {
   return <div className="font-medium mt-2">{children}</div>;
 }
 
-function Action({ children }) {
+function Action({ children, onClick }) {
   const { bgColor } = useContext(QuickBoxContext);
 
   return (
     <button
       className="flex items-center gap-4 w-full justify-center p-2 mt-6 absolute bottom-0 rounded-b-md"
       style={{ backgroundColor: `${bgColor}` }}
+      onClick={onClick}
     >
       <span className="text-sm">{children}</span>
       <img src={ArrowLogo} alt="arrow" />

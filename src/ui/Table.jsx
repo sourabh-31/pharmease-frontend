@@ -38,7 +38,6 @@ function Header({ children }) {
     fontSize: "1.05rem",
     position: "sticky",
     top: 0,
-    zIndex: 10,
   };
 
   return <header style={Header}>{children}</header>;
@@ -70,7 +69,6 @@ function Body({ data, render }) {
     fontWeight: 200,
     textAlign: "center",
     margin: "2.4rem",
-    letterSpacing: "0.05rem",
     wordSpacing: "0.05rem",
   };
 

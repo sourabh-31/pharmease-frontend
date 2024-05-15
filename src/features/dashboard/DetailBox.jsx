@@ -20,9 +20,9 @@ function Heading({ children }) {
   return <p className="text-lg 2xl:text-xl font-bold">{children}</p>;
 }
 
-function Action({ children }) {
+function Action({ children, onClick }) {
   return (
-    <button className="flex items-center gap-2">
+    <button className="flex items-center gap-2" onClick={onClick}>
       <span className="text-xs xl:text-sm">{children}</span>
       <img src={ArrowLogo} alt="arrow" />
     </button>

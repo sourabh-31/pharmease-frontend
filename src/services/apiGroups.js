@@ -2,7 +2,9 @@ import { API } from "../utils/constant";
 
 export async function getAllGroups() {
   try {
-    const res = await fetch(`${API}/groups/all`);
+    const res = await fetch(`${API}/groups/all`, {
+      credentials: "include",
+    });
     if (!res.ok) throw new Error("Error fetching Groups");
     const data = await res.json();
     return data;
@@ -18,6 +20,7 @@ export async function createGroup(group) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(group),
     });
 
@@ -36,6 +39,7 @@ export async function deleteGroup(id) {
   try {
     const res = await fetch(`${API}/groups/delete/${id}`, {
       method: "Delete",
+      credentials: "include",
     });
 
     if (!res.ok) {
@@ -51,7 +55,9 @@ export async function deleteGroup(id) {
 
 export async function getGroup(id) {
   try {
-    const res = await fetch(`${API}/groups/get/${id}`);
+    const res = await fetch(`${API}/groups/get/${id}`, {
+      credentials: "include",
+    });
 
     if (!res.ok) {
       throw new Error("Group could not be found");
@@ -73,6 +79,7 @@ export async function updateGroup(newGroupData, id) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(newGroupData),
     });
 
